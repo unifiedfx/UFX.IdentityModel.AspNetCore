@@ -31,13 +31,6 @@ jobs:
 
     - run: dotnet --info
     
-#    - if: contains(matrix.runs-on, 'macOS') || contains(matrix.runs-on, 'ubuntu')
-#      run: ./build.sh
-#    - if: matrix.runs-on == 'windows-latest' && github.ref != 'refs/heads/main' && !contains(github.ref, 'refs/tags/')
-#      run: ./build.cmd
     - if: (matrix.runs-on == 'windows-latest') && (github.ref == 'refs/heads/main' || contains(github.ref, 'refs/tags/'))
-#      env:
-#        SignClientSecret: ${{ secrets.SIGNCLIENTSECRET }}
       run: |
-#        ./build.cmd sign
         dotnet nuget push .\artifacts\*.nupkg -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_APIKEY }}
