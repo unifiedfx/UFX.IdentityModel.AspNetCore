@@ -34,11 +34,17 @@ jobs:
 
     - run: dotnet --info
 
-    - name: Echo GitHub context
-      run: echo ${{ toJson(github) }}
-
     - name: Echo GitHub Ref
       run: echo ${{ github.ref }}
+
+    - name: Echo Condition 1
+      run: echo ${{ (matrix.runs-on == 'windows-latest') }}
+
+    - name: Echo Condition 2
+      run: echo ${{ (github.ref == 'refs/heads/main') }}
+
+    - name: Echo Condition 3
+      run: echo ${{ (contains(github.ref, 'refs/tags/')) }}
     
     - if: contains(matrix.runs-on, 'macOS') || contains(matrix.runs-on, 'ubuntu')
       run: ./build.sh
