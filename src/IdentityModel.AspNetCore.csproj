@@ -17,10 +17,12 @@
     <PackageIcon>icon.jpg</PackageIcon>
     <PackageProjectUrl>https://github.com/unifiedfx/UFX.IdentityModel.AspNetCore</PackageProjectUrl>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageReadMeFile>README.md</PackageReadMeFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="../icon.jpg" Pack="true" Visible="false" PackagePath="" />
+      <None Include="../icon.jpg" Pack="true" Visible="false" PackagePath="" />
+      <None Include="../README.md" Pack="true" Visible="false" PackagePath="" />
   </ItemGroup>
   
   <ItemGroup>
