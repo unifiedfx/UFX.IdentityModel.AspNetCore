@@ -33,18 +33,6 @@ jobs:
           8.0.x
 
     - run: dotnet --info
-
-    - name: Echo GitHub Ref
-      run: echo ${{ github.ref }}
-
-    - name: Echo Condition 1
-      run: echo ${{ (matrix.runs-on == 'windows-latest') }}
-
-    - name: Echo Condition 2
-      run: echo ${{ (github.ref == 'refs/heads/main') }}
-
-    - name: Echo Condition 3
-      run: echo ${{ (contains(github.ref, 'refs/tags/')) }}
     
     - if: contains(matrix.runs-on, 'macOS') || contains(matrix.runs-on, 'ubuntu')
       run: ./build.sh
@@ -52,4 +40,5 @@ jobs:
       run: ./build.ps1
     - if: (matrix.runs-on == 'windows-latest') && (github.ref == 'refs/heads/main' || contains(github.ref, 'refs/tags/'))
       run: |
+        ./build.ps1
         dotnet nuget push .\artifacts\*.nupkg -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_APIKEY }}
