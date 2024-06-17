@@ -27,9 +27,7 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: |
-          3.1.x
-          5.0.x
-          6.0.x
+          8.0.x
 
     - run: dotnet --info
     
@@ -38,8 +36,8 @@ jobs:
     - if: matrix.runs-on == 'windows-latest' && github.ref != 'refs/heads/main' && !contains(github.ref, 'refs/tags/')
       run: ./build.cmd
     - if: (matrix.runs-on == 'windows-latest') && (github.ref == 'refs/heads/main' || contains(github.ref, 'refs/tags/'))
-      env:
-        SignClientSecret: ${{ secrets.SIGNCLIENTSECRET }}
+#      env:
+#        SignClientSecret: ${{ secrets.SIGNCLIENTSECRET }}
       run: |
-        ./build.cmd sign
-        dotnet nuget push .\artifacts\*.nupkg -s https://www.myget.org/F/identity/api/v2/package -k ${{ secrets.MYGET }}
+#        ./build.cmd sign
+        dotnet nuget push .\artifacts\*.nupkg -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_APIKEY }}
