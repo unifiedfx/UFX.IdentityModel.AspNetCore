@@ -24,5 +24,9 @@ namespace IdentityModel.AspNetCore.AccessTokenManagement
         /// The refresh token
         /// </summary>
         public string? RefreshToken { get; set; }
+        /// <summary>
+        /// The refresh token expiration
+        /// </summary>
+        public DateTimeOffset? RefreshExpiration { get; set; }
     }
 }

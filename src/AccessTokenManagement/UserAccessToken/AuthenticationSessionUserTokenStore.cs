@@ -125,6 +125,7 @@ namespace IdentityModel.AspNetCore.AccessTokenManagement
             string accessToken,
             DateTimeOffset expiration,
             string? refreshToken = null,
+            DateTimeOffset? refreshExpiration = null,
             UserAccessTokenParameters? parameters = null)
         {
             parameters ??= new UserAccessTokenParameters();

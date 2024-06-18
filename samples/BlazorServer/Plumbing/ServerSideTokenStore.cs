@@ -29,7 +29,7 @@ public class ServerSideTokenStore : IUserAccessTokenStore
         return Task.FromResult(value);
     }
 
-    public Task StoreTokenAsync(ClaimsPrincipal user, string accessToken, DateTimeOffset expiration, string? refreshToken = null, UserAccessTokenParameters? parameters = null)
+    public Task StoreTokenAsync(ClaimsPrincipal user, string accessToken, DateTimeOffset expiration, string? refreshToken = null, DateTimeOffset? refreshExpiration = null, UserAccessTokenParameters? parameters = null)
     {
         var sub = user.FindFirst("sub")?.Value ?? throw new InvalidOperationException("no sub claim");
         

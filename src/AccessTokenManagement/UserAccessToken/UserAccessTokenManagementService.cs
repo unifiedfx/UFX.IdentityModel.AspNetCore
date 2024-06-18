@@ -141,8 +141,9 @@ namespace IdentityModel.AspNetCore.AccessTokenManagement
             if (!response.IsError)
             {
                 var expiration = DateTime.UtcNow + TimeSpan.FromSeconds(response.ExpiresIn);
+                var refreshExpiration = DateTime.UtcNow + TimeSpan.FromSeconds(response.Json?.TryGetInt("refresh_token_expires_in") ?? 0);
 
-                await _userAccessTokenStore.StoreTokenAsync(user, response.AccessToken, expiration, response.RefreshToken, parameters);
+                await _userAccessTokenStore.StoreTokenAsync(user, response.AccessToken, expiration, response.RefreshToken, refreshExpiration, parameters);
             }
             else
             {
